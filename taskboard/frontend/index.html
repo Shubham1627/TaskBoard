@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TaskBoard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="banner" class="banner" hidden></div>
+  <header class="top">
+    <h1 id="appName">TaskBoard</h1>
+    <span id="envBadge" class="badge"></span>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <h2>Tasks</h2>
+      <form id="addForm" class="row">
+        <input id="title" type="text" maxlength="200" placeholder="What needs doing?" required aria-label="New task title">
+        <button type="submit">Add task</button>
+      </form>
+      <p id="error" class="error" role="alert" hidden></p>
+      <ul id="tasks" class="tasks"></ul>
+      <p id="empty" class="muted" hidden>No tasks yet. Add your first one above.</p>
+      <p class="muted small">List source: <span id="cacheState">-</span></p>
+    </section>
+
+    <aside class="panel served">
+      <h2>Answered by</h2>
+      <p id="hostname" class="hostname">-</p>
+      <dl class="facts">
+        <dt>Version</dt><dd id="version">-</dd>
+        <dt>Uptime</dt><dd id="uptime">-</dd>
+        <dt>API requests, all instances</dt><dd id="requests">-</dd>
+      </dl>
+      <h3>Instances that have replied to you</h3>
+      <ul id="seen" class="chips"></ul>
+
+      <h3>Send test traffic</h3>
+      <div class="row">
+        <input id="loadCount" type="number" min="1" max="200" value="20" aria-label="Number of requests">
+        <button id="loadBtn" type="button" class="secondary">Burn CPU, 1s each</button>
+      </div>
+      <p id="loadResult" class="muted small"></p>
+    </aside>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+[Unit]
+Description=TaskBoard backend (Node.js)
+After=network.target postgresql.service redis-server.service
+Wants=postgresql.service redis-server.service
+
+[Service]
+Type=simple
+User=taskboard
+Group=taskboard
+WorkingDirectory=/opt/taskboard
+# Two files on purpose: plain config vs secrets (later: ConfigMap vs Secret)
+EnvironmentFile=/etc/taskboard/app.env
+EnvironmentFile=/etc/taskboard/secrets.env
+ExecStart=/usr/bin/node src/server.js
+Restart=always
+RestartSec=3
+TimeoutStopSec=20
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
